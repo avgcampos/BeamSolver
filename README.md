@@ -19,7 +19,7 @@ can be found here:
 https://github.com/avgcampos/BeamSolver                                
                                                                         
 The code is open source and intended for educational and scientific     
-purposes only. If you use myfempy in your research, the developers      
+purposes only. If you use BeamSolver in your research, the developers      
 would be grateful if you could cite this.                               
                                                                           
 The authors reserve all rights but do not guarantee that the code is    
