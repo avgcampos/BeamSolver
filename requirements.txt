@@ -1,0 +1,19 @@
+# lib
+numpy
+matplotlib
+sympy
+
+
+# docs
+mkdocs
+python-markdown-math
+mkdocs-pdf-export-plugin
+
+
+# lint
+autodoc
+flake8
+black
+isort
+interrogate
+pytest

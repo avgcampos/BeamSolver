@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      
+      #----------------------------------------------
+      # check-out repo and set-up python
+      #----------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      
+      #----------------------------------------------
+      # install beamsolver root project
+      #----------------------------------------------
+      - name: Install beamsolver
+        run: |
+            make install
+            make format
+
+      #----------------------------------------------
+      # run lint and test suite
+      #----------------------------------------------
+      - name: Run lint
+        run: make lint
+
+      - name: Run tests
+        run: make test
+
+      - uses: actions/upload-artifact@v2
+        with:
+            name: code-coverage
+            path: htmlcov
