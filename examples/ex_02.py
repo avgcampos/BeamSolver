@@ -1,10 +1,10 @@
 # BeamSolver Examples
 # ---------------------------------------------------
-# Ex: 01: Viga bi-apoiada c/ carga distribuida
+# Ex: 01: Viga bi-apoiada c/ carga concentrada 
 # Antonio Campos 2023
 #
-#      |vvvvvvvvvvvvvvvvvvvvvvvvvvv| q(x) = -1 [N/mm]
-#       ___________________________
+#       |vvvvvvvvvvvv|      v         q(x) =  -1 [N/mm @ 0 < x < 0.5L]  - 100 [N @ x = 0.75L]
+#       ____________________|______
 #      /\                         /\
 #      @x = 0                      @x = L = 1000 [mm]
 #
@@ -38,7 +38,21 @@ load_1 = {
     'type': 'apply', # tipo de forca, neste caso é aplicada na viga ou forca externa
     'order': 0,      # ordem (n) da interpolacao 
     'value': -1.0,  # valor da forca (P), o sinal define a direcao, para baixo negativo
-    'begin': 0.0*L   # inicio de ativacao da forca (a)
+    'begin': 0.*L   # inicio de ativacao da forca (a)
+}
+
+load_2 = {
+    'type': 'apply', # tipo de forca, neste caso é aplicada na viga ou forca externa
+    'order': 0,      # ordem (n) da interpolacao 
+    'value': 1.0,  # valor da forca (P), o sinal define a direcao, para baixo negativo
+    'begin': 0.5*L   # inicio de ativacao da forca (a)
+}
+
+load_3 = {
+    'type': 'apply', # tipo de forca, neste caso é aplicada na viga ou forca externa
+    'order': -1,      # ordem (n) da interpolacao 
+    'value': -100.0,  # valor da forca (P), o sinal define a direcao, para baixo negativo
+    'begin': 0.75*L   # inicio de ativacao da forca (a)
 }
 
 # definicao das condicoes de contorno 
@@ -67,7 +81,7 @@ bc_4 = {
 }
 
 # adicao da lista de cargas na formulacao da viga
-beam.load([load_1])
+beam.load([load_1, load_2, load_3])
 
 # adicao da lista de condicoes de fronteira na formulacao da viga
 beam.bc([bc_1, bc_2, bc_3, bc_4])

@@ -1,14 +1,17 @@
 # BeamSolver Examples
 # ---------------------------------------------------
-# Ex: 01: Viga bi-apoiada c/ carga distribuida
+# Ex: 01: Viga bi-apoiada c/ carga triangular
 # Antonio Campos 2023
-#
-#      |vvvvvvvvvvvvvvvvvvvvvvvvvvv| q(x) = -1 [N/mm]
+#             /vvvvvvv|vvvvvvvvvvvv|
+#    
+#          /vvvvvvvvvv|vvvvvvvvvvvv|
+#         /vvvvvvvvvvv|vvvvvvvvvvvv|
+#        /vvvvvvvvvvvv|vvvvvvvvvvvv|         q(x) =  -1.2 [N/mm]
 #       ___________________________
 #      /\                         /\
-#      @x = 0                      @x = L = 1000 [mm]
+#      @x = 0                      @x = L = 12000 [mm]
 #
-# E = 200E3 [MPa]
+# E = 200E3 [MPa]  
 # I = 65E6  [mm4]
 # ---------------------------------------------------
 
@@ -23,7 +26,7 @@ import matplotlib.pyplot as plt
 beam = NewBeam(BeamEB)
 
 # parametros da viga, utilize unidades consistentes
-L = 1000  # comprimento
+L = 12000  # comprimento
 E = 200E3 # modulo de elasticidade
 I = 65E6  # momento de inercia da secao Izz
 
@@ -36,9 +39,16 @@ x = np.linspace(0, L, 500)
 # definicao da carga 1 --> P<x - a>**n
 load_1 = {
     'type': 'apply', # tipo de forca, neste caso é aplicada na viga ou forca externa
-    'order': 0,      # ordem (n) da interpolacao 
-    'value': -1.0,  # valor da forca (P), o sinal define a direcao, para baixo negativo
+    'order': 1,      # ordem (n) da interpolacao 
+    'value': -1.6/L,  # valor da forca (P), o sinal define a direcao, para baixo negativo
     'begin': 0.0*L   # inicio de ativacao da forca (a)
+}
+
+load_2 = {
+    'type': 'apply', # tipo de forca, neste caso é aplicada na viga ou forca externa
+    'order': 1,      # ordem (n) da interpolacao 
+    'value': 0.4/0.25*L,  # valor da forca (P), o sinal define a direcao, para baixo negativo
+    'begin': 0.75*L   # inicio de ativacao da forca (a)
 }
 
 # definicao das condicoes de contorno 
@@ -67,7 +77,7 @@ bc_4 = {
 }
 
 # adicao da lista de cargas na formulacao da viga
-beam.load([load_1])
+beam.load([load_1, load_2])
 
 # adicao da lista de condicoes de fronteira na formulacao da viga
 beam.bc([bc_1, bc_2, bc_3, bc_4])
