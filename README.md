@@ -40,7 +40,8 @@ event caused by the use of the program.
 
 ```bash
 
->>  pip install -r requirements.txt
+>> pip install -r requirements.txt
+
 >> pip setup.py install
 
 ```
