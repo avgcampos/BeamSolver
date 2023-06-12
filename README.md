@@ -25,3 +25,22 @@ would be grateful if you could cite this.
 The authors reserve all rights but do not guarantee that the code is    
 free from errors. Furthermore, the authors shall not be liable in any   
 event caused by the use of the program.                                
+
+
+
+## Installation
+
+### To install myfempy manually in your directory, following the steps
+
+1. Clone/ Download the main code [latest version] from [github/beamsolver/main]([https://github.com/easycae-3d/myfempy/](https://github.com/avgcampos/BeamSolve))
+
+2. Unzip the pack in your preferred location
+
+3. In the **beamsolver-main** folder, open a terminal and enter with the command:
+
+```bash
+
+>>  pip install -r requirements.txt
+>> pip setup.py install
+
+```
