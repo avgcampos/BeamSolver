@@ -32,7 +32,7 @@ event caused by the use of the program.
 
 ### To install myfempy manually in your directory, following the steps
 
-1. Clone/ Download the main code [latest version] from [github/beamsolver/main]([https://github.com/easycae-3d/myfempy/](https://github.com/avgcampos/BeamSolve))
+1. Clone/ Download the main code [latest version] from [github/beamsolver/main](https://github.com/avgcampos/BeamSolver/releases)
 
 2. Unzip the pack in your preferred location
 
