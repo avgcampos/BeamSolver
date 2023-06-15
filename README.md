@@ -42,6 +42,8 @@ event caused by the use of the program.
 
 >> pip install -r requirements.txt
 
->> pip setup.py install
+>> pip setup.py install (Win)
+
+>> python setup.py install (Linux)
 
 ```
