@@ -70,7 +70,7 @@ setup(
         "beamsolver": "beamsolver",
     },
     install_requires=[
-        "sympy>=1.12"
+        "sympy>=1.12",
         "numpy>=1.24",
         "matplotlib>=3.6",
         "art>=5.8",
