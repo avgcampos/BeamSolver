@@ -64,9 +64,20 @@ class NewBeam(ABC):
 
     def length(self, L: float):
         self.beam.length = self.beam.setLength(L)
+        
+    def thick(self, t_max: float,  t_min: float):
+        self.beam.t_max = t_max
+        self.beam.t_min = t_min
+        
+    def width(self, width: float):
+        self.beam.b = width
 
     def EI(self, E: float, I: float):
+        self.beam.i = I
         self.beam.ei = self.beam.setEI(E, I)
+    
+    def first_moment_of_area(self, Q: float):
+        self.beam.q = Q
 
     def load(self, load_list: list):
         load, support = self.beam.setLoad(load_list)
@@ -98,9 +109,9 @@ class NewBeam(ABC):
         return self.beam.setConstraintEq(self.beam.bc, V, M, s, v, L)
 
     def linsolve(self, consteqs):
-        return self.beam.getLinSolver(consteqs, self.beam.support)
-
-    def eval_constant(self, constraints):
+        
+        constraints = self.beam.getLinSolver(consteqs, self.beam.support)
+        
         self.beam.shear_eval = (
             (self.beam.shear).subs(constraints)
         ).rewrite(sb.Piecewise)
@@ -117,6 +128,23 @@ class NewBeam(ABC):
             (1 / self.beam.ei * self.beam.displ).subs(constraints)
         ).rewrite(sb.Piecewise)
 
+    # def eval_constant(self, constraints):
+    #     self.beam.shear_eval = (
+    #         (self.beam.shear).subs(constraints)
+    #     ).rewrite(sb.Piecewise)
+
+    #     self.beam.bending_eval = (
+    #         (self.beam.bending).subs(constraints)
+    #     ).rewrite(sb.Piecewise)
+
+    #     self.beam.slope_eval = (
+    #         (1 / self.beam.ei * self.beam.slope).subs(constraints)
+    #     ).rewrite(sb.Piecewise)
+
+    #     self.beam.displ_eval = (
+    #         (1 / self.beam.ei * self.beam.displ).subs(constraints)
+    #     ).rewrite(sb.Piecewise)
+
     def getload(self):
         return self.beam.load
 
@@ -124,16 +152,16 @@ class NewBeam(ABC):
         return self.beam.bc
 
     def getshear(self):
-        return self.beam.shear
+        return self.beam.shear_eval
 
     def getbending(self):
-        return self.beam.bending
+        return self.beam.bending_eval
 
     def getslope(self):
-        return self.beam.slope
+        return self.beam.slope_eval
 
     def getdisplacement(self):
-        return self.beam.displ
+        return self.beam.displ_eval
 
     def getshear_array(self, x_array):
         return (
@@ -154,6 +182,16 @@ class NewBeam(ABC):
         return (
             (sb.lambdify(x, self.beam.displ_eval, "numpy"))(x_array)
         ) * np.ones_like(x_array)
+        
+    def stressxx(self, bending):
+        
+        x = np.linspace(0, self.beam.length, len(bending))
+        y = np.linspace(self.beam.t_min, self.beam.t_max, len(bending))
+        
+        X, Y = np.meshgrid(x,y)
+        SXX = -bending*Y/self.beam.i
+        
+        return X, Y, SXX
 
 
 class apiBeam(ABC):

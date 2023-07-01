@@ -43,7 +43,7 @@ load_1 = {
 
 apoio_1 = {
     'type': 'support', # tipo de forca, neste caso é um suporte
-    'order': 0,      # ordem (n) da interpolacao 
+    'order': -1,      # ordem (n) da interpolacao 
     'value': 'R1y',  # valor da forca (P), o sinal define a direcao, para baixo negativo
     'begin': 0.75*L   # inicio de ativacao da forca (a)
 }
