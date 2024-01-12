@@ -1,5 +1,5 @@
-#Makefile
-.PHONY: install format lint test
+#Makefile to dev
+.PHONY: install format lint test doc
 
 install:
 	pip install -r requirements.txt
@@ -16,3 +16,6 @@ lint:
 
 test:
 	pytest -v
+
+doc:
+	mkdocs serve

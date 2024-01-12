@@ -1,0 +1,7 @@
+Tutorial
+=====
+
+```python
+>>> import beamsolver
+>>> 
+```

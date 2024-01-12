@@ -3,12 +3,12 @@ numpy
 matplotlib
 sympy
 
-
 # docs
 mkdocs
 python-markdown-math
 mkdocs-pdf-export-plugin
-
+mkdocstrings-python
+markdown_include
 
 # lint
 autodoc
