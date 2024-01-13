@@ -14,9 +14,8 @@ This Python file is part of BeamSolver project
                                                                   
 The code is written by A. V. G. Campos                                  
                                                                         
-A github repository, with the most up to date version of the code,      
-can be found here:                                                      
-https://github.com/avgcampos/BeamSolver                                
+A web documentation, can be found here:                                                      
+https://beamsolver.readthedocs.io/pt-br/latest/                                
                                                                         
 The code is open source and intended for educational and scientific     
 purposes only. If you use BeamSolver in your research, the developers      
