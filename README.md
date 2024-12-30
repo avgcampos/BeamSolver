@@ -12,7 +12,7 @@
 
 This Python file is part of BeamSolver project                             
                                                                   
-The code is written by A. V. G. Campos                                  
+The code was written by A. V. G. Campos                                  
                                                                         
 A web documentation, can be found here:                                                      
 https://beamsolver.readthedocs.io/pt-br/latest/                                
